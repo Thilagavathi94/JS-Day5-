@@ -7,48 +7,47 @@
 </head>
 <body>
     <script>
-        let groceryList = [];
+           let groceryList = '';
 
 
 function addItem(item) {
-    if (item && !groceryList.includes(item)) {
-        groceryList.push(item);
-        console.log(`${item} has been added to your grocery list.`);
-    } else if (groceryList.includes(item)) {
-        console.log(`${item} is already in your grocery list.`);
+    if (item) {
+        
+        groceryList += item + '\n';
+        console.log(`Added: ${item}`);
     } else {
-        console.log(`Please enter a valid item.`);
-    }
-}
-
-
-function removeItem(item) {
-    const index = groceryList.indexOf(item);
-    if (index > -1) {
-        groceryList.splice(index, 1);
-        console.log(`${item} has been removed from your grocery list.`);
-    } else {
-        console.log(`${item} is not found in your grocery list.`);
+        console.log('Please provide an item name.');
     }
 }
 
 
 function viewItems() {
-    if (groceryList.length === 0) {
-        console.log(`Your grocery list is currently empty.`);
+    if (groceryList) {
+        console.log('Current Grocery List:\n' + groceryList);
     } else {
-        console.log(`Current Grocery List:`);
-        groceryList.forEach((item, index) => {
-            console.log(`${index + 1}. ${item}`);
-        });
+        console.log('The grocery list is empty.');
     }
 }
 
 
-addItem('Apples');
-addItem('Bananas');
+function removeItem(item) {
+    if (groceryList.includes(item)) {
+      
+        let items = groceryList.split('\n');
+        items = items.filter(i => i !== item);
+       
+        groceryList = items.join('\n');
+        console.log(`Removed: ${item}`);
+    } else {
+        console.log(`Item not found: ${item}`);
+    }
+}
+
+
+addItem('Milk');
+addItem('Eggs');
 viewItems();
-removeItem('Apples');
+removeItem('Milk');
 viewItems();
     </script>
 </body>
