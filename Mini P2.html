@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let groceryList = [];
+
+
+function addItem(item) {
+    if (item && !groceryList.includes(item)) {
+        groceryList.push(item);
+        console.log(`${item} has been added to your grocery list.`);
+    } else if (groceryList.includes(item)) {
+        console.log(`${item} is already in your grocery list.`);
+    } else {
+        console.log(`Please enter a valid item.`);
+    }
+}
+
+
+function removeItem(item) {
+    const index = groceryList.indexOf(item);
+    if (index > -1) {
+        groceryList.splice(index, 1);
+        console.log(`${item} has been removed from your grocery list.`);
+    } else {
+        console.log(`${item} is not found in your grocery list.`);
+    }
+}
+
+
+function viewItems() {
+    if (groceryList.length === 0) {
+        console.log(`Your grocery list is currently empty.`);
+    } else {
+        console.log(`Current Grocery List:`);
+        groceryList.forEach((item, index) => {
+            console.log(`${index + 1}. ${item}`);
+        });
+    }
+}
+
+
+addItem('Apples');
+addItem('Bananas');
+viewItems();
+removeItem('Apples');
+viewItems();
+    </script>
+</body>
+</html>
